@@ -1,0 +1,17 @@
+.header-nav {
+  background: #3b621c;
+}
+.header-nav a {
+  display: inline-block;
+  padding: 15px 25px 15px;
+}
+.header-nav a:hover {
+  background: #487922;
+}
+.header-nav a:focus {
+  background: #487922;
+}
+.header-nav a, .header-nav a:visited{
+  color: #fff;
+  text-decoration: none;
+}

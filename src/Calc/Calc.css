@@ -1,0 +1,41 @@
+.calculator {
+  display: flex;
+}
+.calc-res {
+  font-size: 1.2rem;
+}
+
+.block form {
+  margin-bottom: 10px;
+}
+
+.calc-res li {
+  margin: 10px 0;
+  font-size: 1.3rem;
+  display: inline-block;
+  transition: all 1s ease;
+}
+p {
+  font-size: 1rem !important;
+  margin-top: 0.2rem;
+}
+
+.calcline {
+  height: 60px;
+  display: flex;
+  margin-bottom: 0.1rem !important;
+}
+
+
+.chart {
+  margin-top: 50px;
+}
+
+input[count-currency] {
+  margin-left: 2px;
+}
+
+select {
+  padding: 1px 1em 1px 0;
+  margin: 0 2px;
+}
