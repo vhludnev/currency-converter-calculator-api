@@ -5,37 +5,39 @@
   font-size: 1.2rem;
 }
 
-.block form {
+.calculator .block form {
   margin-bottom: 10px;
 }
 
-.calc-res li {
-  margin: 10px 0;
-  font-size: 1.3rem;
+.calculator .block .calc-res li {
+  font-size: 1.2rem;
   display: inline-block;
   transition: all 1s ease;
 }
-p {
+.calculator .block .culc-res .calcline p {
   font-size: 1rem !important;
   margin-top: 0.2rem;
 }
 
-.calcline {
+.calculator .block .culc-res .calcline {
   height: 60px;
   display: flex;
   margin-bottom: 0.1rem !important;
 }
 
-
-.chart {
-  margin-top: 50px;
-}
-
-input[count-currency] {
-  margin-left: 2px;
-}
-
-select {
+.calculator .block select {
   padding: 1px 1em 1px 0;
   margin: 0 2px;
+}
+
+@media only screen and (max-width: 600px) {
+  .calculator .block input[type=submit] {
+    margin-top: 25px;
+  }
+  .calculator .block {
+    width: 80%;
+  }
+  .calculator .block .calc-res li {
+    font-size: 1rem;
+  }
 }

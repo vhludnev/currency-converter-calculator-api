@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './Rate.css';
 import Data from "../db.json";
 import Calc from '../Calc/Calc';
@@ -12,13 +11,12 @@ export default class Rate extends Component {
         'currencyRatesAll': {},
         'currencySymbols': Data.symbols, 
         'history': []   
-    };
+    }
     
     currency = ['USD', 'GBP', 'CAD', 'RUB']; 
 
     /// Data is taken from LocalStorage
     getRateLocal = () => {
-
         let result = {};
         const ratesFromLS = JSON.parse(localStorage.getItem('rates')),
               dateFromLS = JSON.parse(localStorage.getItem('date'))
@@ -32,13 +30,12 @@ export default class Rate extends Component {
                 currencyRatesAll: ratesFromLS
             };
         });
-    };   
+    }   
 
     getRates = () => {
-
         if (localStorage.getItem('rates') === null || new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0] !== new Date().toISOString().split('T')[0]) {
 
-            fetch('https://someApiServer') 
+            fetch('APIKEY') // rates get updated dayly
                 .then(data => {
                     return data.json();
                 })
@@ -70,15 +67,16 @@ export default class Rate extends Component {
         } else {
             this.getRateLocal();
             console.log('Data has been taken from LS')
-        };
-    };
+        }
+    }    
 
     componentDidMount() { 
         this.getRates(); 
-    };
+    } 
+
 
     render() {
-        const { currencyRates, date, currencyRatesAll } = this.state;
+        const { currencyRates, currencyRatesAll } = this.state;
 
         const mainCurrencyBlock = Object.keys(currencyRates).map((keyName, i) => {
             return <div className="block flex-item" key={keyName}>
@@ -88,16 +86,17 @@ export default class Rate extends Component {
                     </div>
         });
 
-        const editedDate = new Date().toISOString().split('T')[0];
-    
+        const editedDate = new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0];
+
         return (
             <div className="rate">
                 <h3> Currency rate for { editedDate } </h3>
-                <div className="flex-container">
+                <div className="flex-container flex-row">
                     { mainCurrencyBlock }             
+                        
                 </div>
                 <Calc ratesAll={currencyRatesAll} />
             </div>
         );
-    };
+    }
 }

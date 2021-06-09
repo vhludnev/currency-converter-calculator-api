@@ -3,6 +3,9 @@
     padding-top: 30px;
     padding-bottom: 30px;
 }
+.footer .footer-bottom p {
+    margin-left: 23px;
+}
 .footer .footer-bottom a {
     line-height: 30px;
     color: #fff;
@@ -22,3 +25,22 @@
     font-size: 1.4rem;
     text-decoration: none;
 }
+.footerblock .site-content .well {
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer-title {
+        font-size: .8rem;
+    }
+    .footer-title a {
+        font-size: .8rem;
+    }
+    .footer .footer-bottom p {
+        margin-left: 10px;
+    }
+    .footer .footer-bottom a {
+        line-height: 25px;
+        margin-left: 10px;
+    }
+  }

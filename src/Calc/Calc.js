@@ -96,9 +96,9 @@ export default class Calc extends Component {
                             </ul>
                         </div>
                     </div>
-                    <div className="chart">
+                    {/* <div className="chart">
                         Chart
-                    </div>
+                    </div> */}
                 </div>
             </>
         );

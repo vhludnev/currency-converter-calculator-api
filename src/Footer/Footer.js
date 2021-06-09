@@ -20,7 +20,7 @@ const Footer = () => {
                             <div className="flex-container">
                                 <div className="flex-item">
                                     <h1 className="footer-title"><a href="https://test.info">2021 &copy; React Currency Converter</a></h1>
-                                    <p> All Rights Reserved </p>
+                                    <p>All Rights Reserved</p>
                                     
                                 </div>
                                 <div className="flex-item">

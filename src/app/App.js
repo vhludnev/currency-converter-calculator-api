@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Rate from '../Rate/Rate';
 import About from '../About/About';
+import Contact from '../Contact/Contact';
 import Footer from '../Footer/Footer';
 
 const App = () => {
@@ -17,7 +18,8 @@ const App = () => {
           <main>          
             <Switch>
               <Route exact path="/" component={Rate}></Route>
-              <Route exact path="/about" component={About}></Route>
+              <Route path="/about" component={About}></Route>
+              <Route path="/contact" component={Contact}></Route>
             </Switch>          
           </main>          
         </div> 

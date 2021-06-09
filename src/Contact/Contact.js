@@ -1,9 +1,10 @@
 import React from 'react';
 
-import './About.css';
+import './Contact.css';
 
-// const About = () => {
-export default class About extends React.Component {
+//const Contact = () => {
+    
+export default class Contact extends React.Component {
 
     componentDidMount() {
         window.scrollTo({
@@ -14,9 +15,8 @@ export default class About extends React.Component {
 
     render() {
         return (
-            <div> About page </div>   
-        )      
+            <div> Contact page </div>   
+        )
     }
-} 
-
-//export default About;
+}   
+//export default Contact;

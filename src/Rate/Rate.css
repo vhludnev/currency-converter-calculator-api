@@ -37,12 +37,15 @@
 
 
 @media only screen and (max-width: 40em) {
-
-    .rate .flex-container {
-        display: block;
+    .flex-row {
+        flex-wrap: wrap;
     }
-    .block .flex-item:nth-of-type(2) {
+    .flex-row .block {
+        width: 25%;
+        height: 100%;
+        margin: 10px;
+    }
+    .flex-row .block .flex-item:nth-of-type(2) {
         font-size: 25px;
     }
-
 }
