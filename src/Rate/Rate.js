@@ -33,46 +33,55 @@ export default class Rate extends Component {
     }   
 
     getRates = () => {
-        if (localStorage.getItem('rates') === null || new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0] !== new Date().toISOString().split('T')[0]) {
-
-            fetch('APIKEY') // rates get updated dayly
-                .then(data => {
-                    return data.json();
-                })
-                .then(data => {            
-                    let result = {};
-                    for (let i = 0; i < this.currency.length; i++) {
-                        result[this.currency[i]] = data.conversion_rates[this.currency[i]]
-                    }
-                    this.setState({
-                        date: data.time_last_update_utc,
-                        currencyRates: result,
-                        currencyRatesAll: data.conversion_rates
-                    });
-                })
-                .then(() => {
-                    localStorage.setItem('date', JSON.stringify(this.state.date));
-                    localStorage.setItem('rates', JSON.stringify(this.state.currencyRatesAll));
-                    localStorage.setItem('symbols', JSON.stringify(this.state.currencySymbols));
-                    console.log('Data has been fetched and LS has been updated');
-                })
-                .catch(error => {
-                    console.warn('Unable to fetch from servers at this moment', error);
-                    localStorage.setItem('date', JSON.stringify(Data.time_last_update_utc));
-                    localStorage.setItem('rates', JSON.stringify(Data.conversion_rates));
-                    localStorage.setItem('symbols', JSON.stringify(Data.symbols));
-                    this.getRateLocal();
-                    console.log('Out-to-date data has been taken from LS')
+        fetch('https://v6.exchangerate-api.com/v6/APIKEY/latest/EUR') // rates get updated dayly
+            .then(data => {
+                return data.json();
+            })
+            .then(data => {            
+                let result = {};
+                for (let i = 0; i < this.currency.length; i++) {
+                    result[this.currency[i]] = data.conversion_rates[this.currency[i]]
+                }
+                this.setState({
+                    date: data.time_last_update_utc,
+                    currencyRates: result,
+                    currencyRatesAll: data.conversion_rates
                 });
+            })
+            .then(() => {
+                localStorage.setItem('date', JSON.stringify(this.state.date));
+                localStorage.setItem('rates', JSON.stringify(this.state.currencyRatesAll));
+                localStorage.setItem('symbols', JSON.stringify(this.state.currencySymbols));
+                console.log('Data has been fetched and LS has been updated');
+            })
+            .catch(error => {
+                console.warn('Unable to fetch from servers at this moment', error);
+                localStorage.setItem('date', JSON.stringify(Data.time_last_update_utc));
+                localStorage.setItem('rates', JSON.stringify(Data.conversion_rates));
+                localStorage.setItem('symbols', JSON.stringify(Data.symbols));
+                this.getRateLocal();
+                console.log('Out-to-date data has been taken from LS')
+            });
+    }    
+
+    componentDidMount() { 
+        if (localStorage.getItem('rates') === null || 
+            new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0] !== new Date().toISOString().split('T')[0]) {
+            this.getRates(); 
         } else {
             this.getRateLocal();
             console.log('Data has been taken from LS')
         }
-    }    
-
-    componentDidMount() { 
-        this.getRates(); 
     } 
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.date !== prevState.date) {      
+            const editedDate = new Date(this.state.date).toISOString().split('T')[0];
+            this.setState({
+                date: editedDate,
+            })
+        }
+    }
 
 
     render() {
@@ -86,11 +95,14 @@ export default class Rate extends Component {
                     </div>
         });
 
-        const editedDate = new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0];
+        // const editedDate = new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0];
+        // console.log(this.state.date)
+        // console.log(editedDate)
+        // console.log(JSON.parse(localStorage.getItem('date')) === this.state.date)
 
         return (
             <div className="rate">
-                <h3> Currency rate for { editedDate } </h3>
+                <h3> Currency rate for { this.state.date } </h3>
                 <div className="flex-container flex-row">
                     { mainCurrencyBlock }             
                         
