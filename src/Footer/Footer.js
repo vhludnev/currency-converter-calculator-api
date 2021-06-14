@@ -9,8 +9,8 @@ const Footer = () => {
             <div className="footerblock">
                 <div className="container" id="cookie_info">
                     <div className="site-content">
-                    <div className="well"> We use cookies on our site. <br /> We use cookies on our site. &nbsp;
-                        <button className="btn btn-primary btn-sm"> OK </button>
+                    <div className="well"> We do not use cookies on our site. &nbsp;
+                        <button className="btn btn-primary btn-sm" onClick={() => document.querySelector('.well').style.visibility = "hidden"}> OK </button>
                     </div>
                     </div>  
                 </div>

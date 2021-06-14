@@ -8,7 +8,8 @@ export default class Calc extends Component {
     state = {
         result: 0,
         curList: [],
-        totalEur: []
+        totalEur: [],
+        value: ''
     }
 
     calcRate = (e) => {
@@ -44,10 +45,23 @@ export default class Calc extends Component {
         });    
     };
 
+    handleChange = (e) =>
+        this.setState({ value: e.target.value });
+
+    componentDidUpdate(prevProps) {
+        if (this.props.clicked !== prevProps.clicked) {  
+            this.setState({
+                value: this.props.clicked,
+            })  
+            const elem = document.querySelector('input[name="count-currency"]');
+                elem.scrollIntoView({behavior: "smooth", block: "center"});
+                elem.focus({preventScroll: true});  
+        }
+    }
 
     render() {
         const { ratesAll } = this.props;
-        const { curList, result, totalEur } = this.state;
+        const { curList, result, totalEur, value } = this.state;
 
         const sortedRatesAll = Object.fromEntries(Object.entries(ratesAll).sort()); // sorting techniques by currency name
 
@@ -80,7 +94,7 @@ export default class Calc extends Component {
                             <div>
                                 <form onSubmit={this.calcRate}>
                                     <input type="number" defaultValue="100" name="count-currency" />
-                                    <select name="type-currency" id="">
+                                    <select name="type-currency" id="" value={value} onChange={this.handleChange} >
                                         { currencyChoice }
                                     </select>
                                     <input type="submit" defaultValue="calc" />

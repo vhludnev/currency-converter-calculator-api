@@ -10,7 +10,8 @@ export default class Rate extends Component {
         'currencyRates': {},
         'currencyRatesAll': {},
         'currencySymbols': Data.symbols, 
-        'history': []   
+        'history': [],  
+        'clickedCur': ''
     }
     
     currency = ['USD', 'GBP', 'CAD', 'RUB']; 
@@ -33,7 +34,7 @@ export default class Rate extends Component {
     }   
 
     getRates = () => {
-        fetch('https://v6.exchangerate-api.com/v6/APIKEY/latest/EUR') // rates get updated dayly
+        fetch('APIKEY') // rates get updated dayly
             .then(data => {
                 return data.json();
             })
@@ -43,7 +44,7 @@ export default class Rate extends Component {
                     result[this.currency[i]] = data.conversion_rates[this.currency[i]]
                 }
                 this.setState({
-                    date: data.time_last_update_utc,
+                    date: new Date(data.time_last_update_utc).toISOString().split('T')[0],
                     currencyRates: result,
                     currencyRatesAll: data.conversion_rates
                 });
@@ -74,31 +75,30 @@ export default class Rate extends Component {
         }
     } 
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.state.date !== prevState.date) {      
-            const editedDate = new Date(this.state.date).toISOString().split('T')[0];
-            this.setState({
-                date: editedDate,
-            })
-        }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (this.state.date !== prevState.date) {      
+    //         const editedDate = new Date(this.state.date).toISOString().split('T')[0];
+    //         this.setState({
+    //             date: editedDate,
+    //         })
+    //     }
+    // }
+
+    clickedBlock = (e) => {
+        let clickedCur = e.target.closest('.flex-row .flex-item').childNodes[0].textContent;
+        this.setState({ clickedCur })
     }
 
-
     render() {
-        const { currencyRates, currencyRatesAll } = this.state;
+        const { currencyRates, currencyRatesAll, clickedCur } = this.state;
 
         const mainCurrencyBlock = Object.keys(currencyRates).map((keyName, i) => {
-            return <div className="block flex-item" key={keyName}>
+            return <div className="block flex-item" key={keyName} onClick={this.clickedBlock}>
                         <div className="currency-name">{keyName}</div>
                         <div className="currency-in">{currencyRates[keyName].toFixed(2)}*</div>
                         <p>* exchange rate for 1 EUR</p>
                     </div>
         });
-
-        // const editedDate = new Date(JSON.parse(localStorage.getItem('date'))).toISOString().split('T')[0];
-        // console.log(this.state.date)
-        // console.log(editedDate)
-        // console.log(JSON.parse(localStorage.getItem('date')) === this.state.date)
 
         return (
             <div className="rate">
@@ -107,7 +107,8 @@ export default class Rate extends Component {
                     { mainCurrencyBlock }             
                         
                 </div>
-                <Calc ratesAll={currencyRatesAll} />
+                <Calc ratesAll={currencyRatesAll}
+                    clicked={clickedCur} />
             </div>
         );
     }
