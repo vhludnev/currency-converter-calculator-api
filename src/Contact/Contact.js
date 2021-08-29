@@ -2,7 +2,6 @@ import React from 'react';
 
 import './Contact.css';
 
-//const Contact = () => {
     
 export default class Contact extends React.Component {
 
@@ -15,8 +14,7 @@ export default class Contact extends React.Component {
 
     render() {
         return (
-            <div> Contact page </div>   
+            <div className="contactpage"> <p>Contact page</p> </div>   
         )
     }
 }   
-//export default Contact;

@@ -34,7 +34,7 @@ export default class Rate extends Component {
     }   
 
     getRates = () => {
-        fetch('APIKEY') // rates get updated dayly
+        fetch('KEY') // rates get updated dayly
             .then(data => {
                 return data.json();
             })

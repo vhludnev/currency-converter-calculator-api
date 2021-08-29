@@ -1,0 +1,13 @@
+.contactpage {
+	display: block;
+	height: 100vh;
+	text-align: center;
+	padding-top: 50px;
+}
+.contactpage p{
+	height: 200px;
+	width: auto;
+	animation:spin 10s linear infinite
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

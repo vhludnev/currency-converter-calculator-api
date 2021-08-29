@@ -1,0 +1,41 @@
+.aboutpage {
+	display: block;
+	height: 100vh;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.aboutpage img {
+	top: 15%;
+  	position: absolute;
+	animation: linear infinite;
+  	animation-name: run;
+  	animation-duration: 15s;
+}
+
+@keyframes run {
+  0% {
+    left: 0;
+  }
+  48% {
+    -webkit-transform: rotateY(0deg); 
+  }
+  50% { 
+    left: calc(100% - 100px);
+    -webkit-transform: rotateY(180deg); 
+  }
+  98% {
+    -webkit-transform: rotateY(180deg); 
+  }
+  100% {
+    left: 0;    
+     -webkit-transform: rotateY(0deg);
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+	.aboutpage img {
+		animation-duration: 5s;
+	}
+}

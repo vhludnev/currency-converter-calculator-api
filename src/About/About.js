@@ -2,7 +2,6 @@ import React from 'react';
 
 import './About.css';
 
-// const About = () => {
 export default class About extends React.Component {
 
     componentDidMount() {
@@ -14,9 +13,10 @@ export default class About extends React.Component {
 
     render() {
         return (
-            <div> About page </div>   
+			<div className="aboutpage"> 
+				<p>About us page</p> 
+				<img src="https://i.stack.imgur.com/qgNyF.png?s=328&g=1" width="100px" height="100px" alt="potato" />
+			</div> 
         )      
     }
 } 
-
-//export default About;

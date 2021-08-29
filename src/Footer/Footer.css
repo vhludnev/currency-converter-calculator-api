@@ -15,32 +15,39 @@
     text-decoration: none;
     font-family: 'Roboto Condensed', sans-serif;
 }
-.footer-title {
+.footer .footer-bottom .flex-item .footer-title {
     color: #fff;
     font-size: 1.4rem;
     margin-bottom: 20px;
 }
-.footer-title a {
+.footer .footer-bottom .flex-item .footer-title a {
     color: #fff;
     font-size: 1.4rem;
     text-decoration: none;
+}
+.footer .footer-bottom .flex-item .module-body {
+	text-align: end;
+	padding-right: 15px;
 }
 .footerblock .site-content .well {
     margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 600px) {
-    .footer-title {
-        font-size: .8rem;
-    }
-    .footer-title a {
-        font-size: .8rem;
-    }
-    .footer .footer-bottom p {
+	.footer .footer-bottom p {
         margin-left: 10px;
     }
     .footer .footer-bottom a {
         line-height: 25px;
         margin-left: 10px;
+    }
+    .footer .footer-bottom .flex-item .footer-title {
+        font-size: .8rem;
+    }
+    .footer .footer-bottom .flex-item .footer-title a {
+        font-size: .8rem;
+    }
+	.footer .footer-bottom .flex-item .module-body {
+        font-size: .8rem;
     }
   }
